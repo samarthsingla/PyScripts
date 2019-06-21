@@ -99,17 +99,17 @@ def insertDate(main, new, offset, spacing):
 
 ap("Loading main image\n")
 
-main = img.open("sign WhiteBG.jpg")
+discs = img.open("sign WhiteBG.jpg")
 
-main = main.convert("RGBA")
+discs = discs.convert("RGBA")
 
-main_w, main_h = main.size
+main_w, main_h = discs.size
 
-keepBlack(main)
+keepBlack(discs)
 
 new = img.new("RGBA", (main_w * 3 //2, main_h ))
 
-insertDate(main, new, dateOffset, dateSpacing)
+insertDate(discs,new,dateOffset,dateSpacing)
 
 new.save("test.png", "PNG")
 

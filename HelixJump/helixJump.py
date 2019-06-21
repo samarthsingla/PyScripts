@@ -15,7 +15,7 @@ a = 1 #lines per second squared downwards taken positive
 
 pos = [size/2, 0]
 vel = 0
-discs_passed = 0
+currentDisc = 0
 game_complete = False
 
 right = ['d', 'w', 'l', 'i']
@@ -26,13 +26,13 @@ level_len = 20 #number of lines total (including blanks)
 
 hole_sizes = [4,5,6,7,8]
 
-main = [] #main game array
+discs = [] #main game array
 discs = []
-movement = copy.deepcopy(main)
+movement = copy.deepcopy(discs)
 
 errmsg = {'invkey':"Invalid Keypress."}
 def initialize():
-    global main
+    global discs
 
     for i in range(level_len):
         row = []
@@ -44,7 +44,7 @@ def initialize():
     dupli()
 
 def dupli():
-    global main
+    global discs
     global movement
 
     movement = copy.deepcopy(main)
@@ -81,7 +81,7 @@ def makeRow():
     return row
 
 def makelevel():
-    global main
+    global discs
     global size
     global gap
     global level_len
@@ -97,7 +97,7 @@ def scroll(move):
     """this function scrolls the whole thing one unit to the right or to the left
     move is a boolean value, true means to the right"""
     global size
-    global main
+    global discs
     global movement
 
     if move:
@@ -128,7 +128,7 @@ def process(p):
 def updateBall():
     global a
     global movement
-    global main
+    global discs
     global pos
     global vel
     global skin
@@ -146,7 +146,7 @@ def updateBall():
 
 def onHitDisc():
     global pos
-    global discs_passed
+    global currentDisc
     global discs #y-coordinate of the discs
     global game_complete
 
@@ -174,7 +174,7 @@ ballUpdater = Thread(target=updateBall)
 makelevel()
 dupli()
 render()
-ballUpdater.start()
+#ballUpdater.start()
 #GAME LOOP
 while 1:
     if ms.kbhit():
