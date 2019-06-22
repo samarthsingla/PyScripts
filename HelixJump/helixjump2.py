@@ -4,7 +4,6 @@ import copy
 from random import randint, randrange, choice
 from os import system
 import sys
-import msvcrt as ms
 from threading import Thread
 import math
 
@@ -13,32 +12,42 @@ white = (255, 255, 255)
 red = (255, 0, 0)
 green = (0, 255, 0)
 blue = (0, 0, 255)
-bgColor = (0, 116, 217)
+bgColor = (0, 160, 250)
 orange = (228, 106, 107)
+orange2 = (200, 90, 140)
 invincibleColor = (0,206,209)
+slowmotionColor = (0,0,0,0)
 
 #vars
-
-GAME_TITLE = "Arcade Jump"
+pygame.init()
+GAME_TITLE = "ArcadeJump"
 VERSION = "[BETA]"
 
 won = False
 
 FPS = 75
 
-SLOWMOTION_PERIOD = 105
-NORMAL_PERIOD = 55
-UPDATE_PERIOD = NORMAL_PERIOD #increasing this would induce slow motion
+won_message = ["Level Succesfully Completed", "You Won!", "Well Done Soldier"]
+lost_message = ["Oops! Try Again!", "Not That Easy!", "There is always a next time"]
 
-w = 1400
-h = 800
+NORMAL_PERIOD = FPS - 10
+UPDATE_PERIOD = NORMAL_PERIOD #increasing this would induce slow motion
+SLOWMOTION_PERIOD = FPS + 30
+
+display_info = pygame.display.Info()
+monitor_res = (display_info.current_w, display_info.current_h)
+
+w = monitor_res[0]
+h = monitor_res[1]
 
 ballOffset = 50
 res = (w, h)
-pygame.init()
+
 clock = pygame.time.Clock()
+
 rotationSpeed = -50  #negative = clockwise
 friction = 2
+drag = 1.5
 currentAngle = 0
 
 obs = '@'
@@ -65,7 +74,7 @@ move_view_speed = int(max_vel / 3)
 level_len = 20 #number of discs total (including blanks)
 
 pre = ball_size[0] // block_size[0] * 3
-hole_sizes = [pre, pre+1, pre+2, pre+3]
+hole_sizes = [pre+10, pre+14, pre+15, pre+16]
 
 pre *= 1.5
 pre = int(pre)
@@ -77,7 +86,7 @@ disc_positions = []
 
 
 #init stuff
-disp = pygame.display.set_mode(res)
+disp = pygame.display.set_mode((w, h), flags=pygame.HWSURFACE|pygame.FULLSCREEN, depth=16)
 
 pygame.display.set_caption(GAME_TITLE+VERSION)
 
@@ -96,27 +105,49 @@ viewMoved = 0
 multiplier = 1
 bounces = 1 #bounces since crossing last disc
 
+filename ="savedata/{}_game_save.ARCADEJUMP".format(GAME_TITLE)
+
 scorePerBounce = 20
 score = 0
+highscore = 0
+highscore_mode = "EASY"
+
+try:
+    scorefile = open(filename, "r")
+    try:
+        string = scorefile.read().split("\n")
+        highscore=int(string[0])
+        highscore_mode = string[1]
+    except:
+        print("Warning: Something wrong with the scorefile.")
+        highscore=0
+except:
+    highscore = 0
+
 score_string = str(score)
 disp_added = None
 added = 0
 
+mode = 0 #of difficulty
+mode_name = "EASY"
 
-trail = []  #experimental
+"""Trails list contains tuples for a coordinate which has to be rendered as a trail"""
+trail_l = []  #experimental
+trail_r = []
+trail_len = 12 #pixels
+trail_color = orange
+trail_size = 5 #pixels
+trail_thickness = (4, trail_size) #Dont modify
+render_trail = False
 
+for i in range(trail_len):
+    trail_l.append([0,0])
+    trail_r.append([0,0])
 
-def genscorestring():
-    global score
-    global score_string
-    global added
+#some funcs
 
-    score_string="Score: {}  ".format(score)
-    if added != None:
-        score_string += " +{}".format(added)
 
 #Classes
-
 
 class images:
     pass
@@ -173,11 +204,171 @@ class Powerup:
 class Powerups:
     pass
 
-#functions
+
+class rarities:
+    slowmotion = 10
+    invincible = 10
+
+
+class durations:
+    slowmotion = 6
+    invincible = 3
+
+#functions:
+def selectDifficultyScreen():
+    global disp
+    global w, h
+    global bgColor
+    global clock
+
+    start = h // 10
+    butsize = (w//3, h//3)
+    gap = butsize[1]
+    disp.fill(bgColor)
+
+    easy1 = pg.transform.scale(images.easy1, butsize)
+    easy2 = pg.transform.scale(images.easy2, butsize)
+    medium1 = pg.transform.scale(images.medium1, butsize)
+    medium2 = pg.transform.scale(images.medium2, butsize)
+    veteran1 = pg.transform.scale(images.veteran1, butsize)
+    veteran2 = pg.transform.scale(images.veteran2, butsize)
+
+    run = True
+
+    curr = [easy1, medium1, veteran1]
+    normal = [easy1, medium1, veteran1]
+    hover = [easy2, medium2, veteran2]
+
+    rects = []
+
+    j = 0
+    for but in curr:
+        rect = but.get_rect()
+        rect.center = (w//2, start + gap * j)
+        rects.append(rect)
+        j += 1
+
+    hov = 0
+    while run:
+        disp.fill(bgColor)
+        curr[hov] = hover[hov]
+        for i in range(3):
+            disp.blit(curr[i], rects[i])
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.KEYDOWN:
+                if pygame.key.get_pressed()[pygame.K_RETURN]:
+                    setDifficulty(hov)
+                    run = False
+                    break
+                elif pygame.key.get_pressed()[pygame.K_DOWN] or pygame.key.get_pressed()[pygame.K_s]:
+                    hov = (hov + 1) % 3
+                    continue
+                elif pygame.key.get_pressed()[pygame.K_UP] or pygame.key.get_pressed()[pygame.K_w]:
+                    hov = (hov - 1) % 3
+                    continue
+
+        clock.tick(FPS)
+        curr = copy.copy(normal)
+        pygame.display.update()
+
+
+def setDifficulty(n):
+    """Set's the difficulty of the game according to n, which is 0, 1 ,2"""
+    global NORMAL_PERIOD
+    global SLOWMOTION_PERIOD
+    global hole_sizes
+    global mode
+    global mode_name
+    global friction
+    global drag
+    global level_len
+
+    if n:
+        if n == 1:
+            mode = 1
+            mode_name = "MEDIUM"
+            NORMAL_PERIOD -= 15
+            SLOWMOTION_PERIOD -= 20
+            durations.slowmotion -= 2
+            durations.invincible -= 2
+            level_len = 30
+
+        else:
+            mode = 2
+            mode_name = "VETERAN"
+            NORMAL_PERIOD -= 25
+            SLOWMOTION_PERIOD -= 30
+            rarities.slowmotion, rarities.invincible = 0, 0
+            durations.slowmotion -= 3
+            durations.invincible -= 3
+
+            level_len = 40
+            drag = 2
+            friction = 1.3
+    else:
+        mode = 0
+        mode_name = "EASY"
+
+
+def genscorestring():
+    global score
+    global score_string
+    global added
+    global highscore
+    global highscore_mode
+    global mode_name
+
+    score_string = "Score: {}  ".format(score)
+    if added != None:
+        score_string += " +{}".format(added)
+
+    score_string += "   AllTime: {} [{}]   Current Mode: {}".format(highscore,highscore_mode, mode_name)
+
+
+def waviness():
+    global trail_l, trail_r
+
+    for i in range(trail_size):
+        lx = trail_l[i][0]
+        rx = trail_r[i][0]
+
+        lx += randint(0, 10)
+        rx += randint(0, 10)
+
+
+def setFPS():
+    """Function to set FPS according to resolution"""
+    global FPS
+    global w, h
+    global NORMAL_PERIOD
+    global SLOWMOTION_PERIOD
+
+    samples = w * h
+
+    res = [640 * 360, 720 * 405, 1280 * 720, 1366 * 768, 1920 * 1080, 2560 * 1440, 3840 * 2160, 7680 * 4320]
+    avg = []
+
+    for i in range(len(res) - 1):
+        val = (res[i] + res[i+1]) / 2
+        avg.append(val)
+
+    index = 0
+    while samples < avg[index]:
+        index += 1
+
+    fps = [75 ,75 ,75 ,75 ,75 ,75 ,75 ,75]
+
+    FPS = fps[index]
+
+    NORMAL_PERIOD = FPS - 40
+    SLOWMOTION_PERIOD = NORMAL_PERIOD + 40
+
 
 def initpowerups():
-    Powerups.invincible = Powerup("&",2,9,images.invincible)
-    Powerups.slowmotion = Powerup("$",6,14,images.slowmotion)
+    Powerups.invincible = Powerup("&",durations.invincible,rarities.invincible,images.invincible)
+    Powerups.slowmotion = Powerup("$",durations.slowmotion,rarities.slowmotion,images.slowmotion)
 
     global icons
     for powerup in powerups:
@@ -188,6 +379,7 @@ def loadImages():
     global block_size
     global ball_size
     global disp
+    global trail_thickness
 
     blockImage = pygame.image.load("resources/block.png")
     blockImage = pygame.transform.scale(blockImage, block_size)
@@ -211,6 +403,34 @@ def loadImages():
     blockImage=pygame.transform.scale(blockImage,block_size)
     images.slowmotion=blockImage
 
+    blockImage=pygame.image.load("resources/trail.png")
+    blockImage=pygame.Surface.convert_alpha(blockImage)
+    blockImage=pygame.transform.scale(blockImage,(200,200))
+    images.trail=blockImage
+
+    #buttons
+
+    #easy
+    but1 = pygame.image.load("resources/buttons/goeasy1.png")
+    but2 = pygame.image.load("resources/buttons/goeasy2.png")
+    but1 = blockImage=pygame.Surface.convert_alpha(but1)
+    but2 = blockImage=pygame.Surface.convert_alpha(but2)
+    images.easy1, images.easy2 = but1, but2
+
+    #medium
+    but1=pygame.image.load("resources/buttons/medium1.png")
+    but2=pygame.image.load("resources/buttons/medium2.png")
+    but1=blockImage=pygame.Surface.convert_alpha(but1)
+    but2=blockImage=pygame.Surface.convert_alpha(but2)
+    images.medium1,images.medium2=but1,but2
+
+    #veteran
+    but1=pygame.image.load("resources/buttons/veteran1.png")
+    but2=pygame.image.load("resources/buttons/veteran2.png")
+    but1=blockImage=pygame.Surface.convert_alpha(but1)
+    but2=blockImage=pygame.Surface.convert_alpha(but2)
+    images.veteran1,images.veteran2=but1,but2
+
 
 def removeAdded(delay):
     "Removes the 'added' portion of the score string after sometime"
@@ -227,6 +447,21 @@ def removeAdded(delay):
 addedRemoverThread = Thread(target=removeAdded, args=(2,))
 addedRemoverThread.start()
 
+def saveGame():
+    global score
+    global highscore
+    global GAME_TITLE
+    global filename
+    global mode_name
+    global highscore_mode
+
+    file = open(filename,"w")
+    if score > highscore:
+        file.write(str(score) + "\n{}".format(mode_name))
+    else:
+        file.write(str(highscore) + "\n{}".format(highscore_mode))
+    file.close()
+
 
 def cap(x, u, l):
     if x < l:
@@ -242,7 +477,9 @@ def addObstacles():
     global obs_sizes
     global size
     global obs
-
+    global ball
+    global surface
+    global w, h
     for each in discs:
         n=choice([1,2])
         for i in range(n):
@@ -254,6 +491,11 @@ def addObstacles():
                     each[j] = "@"
                 elif each[j] == " ":
                     r.append(r[-1] % len(r))
+
+    disc = discs[0]
+    indices = [(int(w/2)) % size,(int(w/2)) % size + 1, (int(w/2)) % size - 1]
+    for index in indices:
+        disc[index] = surface
 
 
 def addPowerups():
@@ -320,6 +562,21 @@ def updateBall():
     global UPDATE_PERIOD
     global SLOWMOTION_PERIOD
     global NORMAL_PERIOD
+    global trail_l, trail_r
+
+    x = ball.x
+    y = ball.y
+
+    l = (x - ball_size[0]/2, y)
+    r = (x + ball_size[0]/2, y)
+
+    trail_l.pop(0)
+    trail_r.pop(0)
+
+    trail_l.append(l)
+    trail_r.append(r)
+
+    waviness()
 
     if Powerups.slowmotion.active:
         UPDATE_PERIOD = SLOWMOTION_PERIOD
@@ -356,9 +613,15 @@ def weight(x):
     return abs(x // 6)
 
 
-def initialize():
-    "Everything required to init this game"
+def pre_init():
+    "init before difficulty selection"
     loadImages()
+    pygame.mouse.set_visible(False)
+
+
+def initialize():
+    "init after difficulty selection"
+    #setFPS()
     initpowerups()
     makeLevel()
 
@@ -422,10 +685,29 @@ def renderDiscs():
 
 def generateText(s, font, size):
     global orange
+    global orange2
 
     "Generates text of the string passed as parameter"
-    im = pygame.font.Font(font, size).render(s, True, orange)
+    im = pygame.font.Font(font, size).render(s, True, orange2)
     return im
+
+
+def renderTrail():
+    global trail_l, trail_r
+    global trail_len
+    global disp
+    global trail_color
+    global view
+
+
+    delta = 0
+
+    for i in range(trail_len - 1):
+        start, end = (trail_l[i][0], trail_l[i][1] + view),(trail_l[i + 1][0] + delta * (i - trail_len/2), trail_l[i + 1][1] + view)
+        pg.draw.aaline(disp,trail_color, start, end)
+
+        start, end = (trail_r[i][0], trail_r[i][1] + view),(trail_r[i + 1][0] + delta * (i - trail_len/2), trail_r[i + 1][1] + view)
+        pg.draw.aaline(disp,trail_color,start,end)
 
 
 def render():
@@ -437,7 +719,7 @@ def render():
     global h
     global score_string
     global invincibleColor
-
+    global powerups
     if ball.y + view > h - h/2:
         addMoverThread()
         viewMoverThreads[-1].start()
@@ -458,11 +740,17 @@ def render():
 
     text = generateText(score_string,fonts.score, 50)
 
+    for powerup in powerups:
+        if powerup.active:
+            renderTrail()
+            break
+
     disp.blit(text, (0, 0))
 
 
 def isInvincible():
     return Powerups.invincible.active
+
 
 def addToScore():
     global bounces, added, scorePerBounce, multiplier, disp_added, score
@@ -525,14 +813,11 @@ def collision():
             disp_added = added
             score += added
 
-            print(score)
             print(f"EVENT: DISC_{currentDisc - 1}_CROSSED")
-
 
             addMoverThread()
             viewMoverThreads[-1].start()
 
-            print("EVENT: MOVING_VIEW\n")
             return False
         elif curr == "@":
             #Hit an obstacle
@@ -559,7 +844,7 @@ def collision():
             #move a little because of ball's spin
             ball.vx = rotationSpeed * -1 * friction / 20
 
-            rotationSpeed /= 2
+            rotationSpeed /= friction
 
             bounces += 1
             multiplier = 1
@@ -595,7 +880,7 @@ def popper():
 def addMoverThread():
     newThread = Thread(target=moveView, args=(move_view_speed, ))
     viewMoverThreads.append(newThread)
-    print("NEW_THREAD_ADDED", viewMoverThreads)
+    print("NEW_THREAD_ADDED")
 
 
 def addPopperThread():
@@ -611,44 +896,54 @@ def renderText(txt):
     disp.blit(image,rect)
     pygame.display.update()
 
+try:
+    pre_init()
 
-initialize()
+    selectDifficultyScreen()
+
+    initialize()
+except:
+    pygame.quit()
+    print("""Something went wrong. Make sure that this app is running from its home directory. (As received), i.e. Don't move this application to another location.""")
+    input()
 ball = Ball()
 
+system("cls")
 print("This info is meant for debugging, as the game is still in BETA. Please ignore this info.\n")
 while running and not won:
-    updateBall()
-    render()
+    if pygame.mouse.get_focused() or not pygame.mouse.get_focused():
+        updateBall()
+        render()
 
-    for event in pygame.event.get():
-        if event == pygame.QUIT:
-            running = False
-        if event.type == pg.MOUSEMOTION:
-            relx, rely = event.rel
-            relx = cap(relx, 20, -20)
+        for event in pygame.event.get():
+            if event == pygame.QUIT:
+                running = False
+            if event.type == pg.MOUSEMOTION:
+                relx, rely = event.rel
+                relx = cap(relx, 40, -40)
 
-            rotationSpeed += relx * friction
+                rotationSpeed += relx * drag
 
-            ball.x -= relx // 8
-            if relx != 0:
-                wei = weight(relx)
-                relx += abs(relx)
+                ball.x -= relx // 12
+                if relx != 0:
+                    wei = int(weight(relx) * 1.4)
+                    relx += abs(relx)
 
-                for i in range(wei + 1):
-                    scroll(relx)
-            if rely != 0:
-                if ball.v > 0:
-                    #ball.v += rely * 3
-                    pass
+                    for i in range(wei + 2):
+                        scroll(relx)
+                if rely != 0:
+                    if ball.v > 0:
+                        pass
 
-    pygame.display.update()
-    clock.tick(FPS)
-
+        pygame.display.update()
+        clock.tick(FPS)
 if won:
-    renderText("You Won!")
+    renderText(choice(won_message))
+    saveGame()
 else:
-    renderText("Not that Easy!")
+    renderText(choice(lost_message))
 
 sleep(3)
 pygame.quit()
-quit()
+
+exit()
