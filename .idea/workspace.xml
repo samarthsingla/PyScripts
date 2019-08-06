@@ -2,11 +2,59 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="be04fd65-ddb9-4700-90ca-d76df5f871a0" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/HelixJump/Instructions.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KerasDemos/first.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/KerasDemos/flappybird.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/MatrixRotation.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaIT.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Generator.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/SAVED_GAME.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/helixjump2.exe" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/HelixJump/helixjump2.py" beforeDir="false" afterPath="$PROJECT_DIR$/HelixJump/helixjump2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelixJump/resources/block.psd" beforeDir="false" afterPath="$PROJECT_DIR$/HelixJump/resources/block.psd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/HelixJump/resources/invincible.png" beforeDir="false" afterPath="$PROJECT_DIR$/HelixJump/resources/invincible.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/6809 chargen.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/ARCADECLASSIC.TTF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/ball.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/ball.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/block.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/block.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/goeasy1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/goeasy2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/medium1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/medium2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/veteran1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttons/veteran2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/buttonstext.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/invincible.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/obs.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/slowmotion.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/trail.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/resources/trail.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/HelixJump/savedata/ArcadeJump_game_save.ARCADEJUMP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Sign WhiteBG.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/SignOnlyBlack.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digit.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits.psd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/4.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/5.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/6.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/7.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/8.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/9.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/digits/slash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/soundWave.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/test1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/testDig.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/three.jpg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,41 +67,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://E:/Softwares/Python 3.7.3 Core/Lib/site-packages/functions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
+            <state relative-caret-position="44">
               <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AlphaIT.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="12" column="41" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="41" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Generator.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="966">
-              <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-              <folding>
-                <element signature="e#0#41#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/HelixJump/helixjump2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="819" column="12" selection-start-line="819" selection-start-column="12" selection-end-line="819" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -61,11 +76,44 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HelixJump/helixJump.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2961">
-              <caret line="141" column="26" lean-forward="true" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
+            <state relative-caret-position="2970">
+              <caret line="141" column="26" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MatrixRotation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1914">
+              <caret line="91" selection-start-line="91" selection-end-line="91" />
+              <folding>
+                <element signature="e#16#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/mpu/mpu6050.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1034">
+              <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/HelixJump/game/helixjump2.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="283">
+              <caret line="1008" column="96" lean-forward="true" selection-start-line="1008" selection-start-column="96" selection-end-line="1008" selection-end-column="96" />
             </state>
           </provider>
         </entry>
@@ -82,10 +130,6 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/AlphaIT.py" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Generator.py" root0="SKIP_INSPECTION" />
-  </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
@@ -93,12 +137,16 @@
         <option value="$PROJECT_DIR$/ImgManip.py" />
         <option value="$PROJECT_DIR$/AlphaIT.py" />
         <option value="$PROJECT_DIR$/Generator.py" />
+        <option value="$PROJECT_DIR$/MatrixRotation.py" />
+        <option value="$PROJECT_DIR$/../mpu6050.py" />
+        <option value="$PROJECT_DIR$/mpu/mpu6050.py" />
+        <option value="$PROJECT_DIR$/HelixJump/game/helixjump2.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="237" />
-    <option name="y" value="-17" />
+    <option name="x" value="-114" />
+    <option name="y" value="2" />
     <option name="width" value="974" />
     <option name="height" value="1057" />
   </component>
@@ -106,7 +154,10 @@
     <navigator proportions="" version="1">
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes />
+    <panes>
+      <pane id="ProjectPane" />
+      <pane id="Scope" />
+    </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -125,28 +176,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Generator">
-    <configuration name="AlphaIT" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <module name="Py Scripts" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="E:\Softwares\Python 3.7.3 Core\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/AlphaIT.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.helixjump2 (1)">
     <configuration name="Generator" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py Scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -168,19 +198,82 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="ImgManip" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="helixjump2 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="Py Scripts" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="E:\Softwares\Python 3.7.3 Core\python.exe" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HelixJump/game" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ImgManip.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HelixJump/game/helixjump2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="helixjump2" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Py Scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/HelixJump" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/HelixJump/helixjump2.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mpu6050 (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Py Scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/mpu" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/mpu/mpu6050.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="mpu6050" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Py Scripts" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/.." />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../mpu6050.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -191,9 +284,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.helixjump2 (1)" />
+        <item itemvalue="Python.mpu6050 (1)" />
+        <item itemvalue="Python.helixjump2" />
+        <item itemvalue="Python.mpu6050" />
         <item itemvalue="Python.Generator" />
-        <item itemvalue="Python.AlphaIT" />
-        <item itemvalue="Python.ImgManip" />
       </list>
     </recent_temporary>
   </component>
@@ -211,21 +306,21 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.24973656" />
-      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49945828" visible="true" weight="0.06849315" />
+      <window_info id="Structure" order="1" sideWeight="0.5005417" side_tool="true" visible="true" weight="0.06849315" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.3290461" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32827735" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.32936078" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -255,47 +350,155 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/full2.png" />
     <entry file="file://$PROJECT_DIR$/ImgManip.py" />
+    <entry file="file://$PROJECT_DIR$/AlphaIT.py" />
+    <entry file="file://$PROJECT_DIR$/Generator.py" />
+    <entry file="file://$PROJECT_DIR$/../mpu6050.py" />
+    <entry file="file://$PROJECT_DIR$/HelixJump/helixjump2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="961" column="44" lean-forward="true" selection-start-line="14" selection-end-line="14" selection-end-column="23" />
+          <folding>
+            <element signature="e#2256#2549#0" />
+            <element signature="e#2305#2405#0" />
+            <element signature="e#2426#2549#0" />
+            <element signature="e#2562#2619#0" />
+            <element signature="e#3015#3062#0" />
+            <element signature="e#3064#3075#0" />
+            <element signature="e#3106#3110#0" />
+            <element signature="e#3130#3212#0" />
+            <element signature="e#3231#3387#0" />
+            <element signature="e#3287#3387#0" />
+            <element signature="e#3412#3416#0" />
+            <element signature="e#3438#4195#0" />
+            <element signature="e#3662#3922#0" />
+            <element signature="e#3953#4087#0" />
+            <element signature="e#4120#4195#0" />
+            <element signature="e#4218#4222#0" />
+            <element signature="e#4245#4280#0" />
+            <element signature="e#4304#4337#0" />
+            <element signature="e#4385#6016#0" />
+            <element signature="e#5076#5185#0" />
+            <element signature="e#5222#6016#0" />
+            <element signature="e#5395#5926#0" />
+            <element signature="e#5444#5926#0" />
+            <element signature="e#5510#5586#0" />
+            <element signature="e#5709#5757#0" />
+            <element signature="e#5878#5926#0" />
+            <element signature="e#6045#6945#0" />
+            <element signature="e#6306#6891#0" />
+            <element signature="e#6329#6541#0" />
+            <element signature="e#6569#6891#0" />
+            <element signature="e#6910#6945#0" />
+            <element signature="e#6974#7319#0" />
+            <element signature="e#7342#7511#0" />
+            <element signature="e#7407#7511#0" />
+            <element signature="e#7532#8153#0" />
+            <element signature="e#7895#7948#0" />
+            <element signature="e#8180#8453#0" />
+            <element signature="e#9696#9704#0" />
+            <element signature="e#10607#10826#0" />
+            <element signature="e#10733#10826#0" />
+            <element signature="e#10767#10809#0" />
+            <element signature="e#10941#11076#0" />
+            <element signature="e#11099#11466#0" />
+            <element signature="e#11491#11577#0" />
+            <element signature="e#11604#12279#0" />
+            <element signature="e#11751#12123#0" />
+            <element signature="e#11806#12123#0" />
+            <element signature="e#11978#12123#0" />
+            <element signature="e#12305#12799#0" />
+            <element signature="e#12414#12799#0" />
+            <element signature="e#12445#12799#0" />
+            <element signature="e#12498#12799#0" />
+            <element signature="e#12726#12799#0" />
+            <element signature="e#12823#13404#0" />
+            <element signature="e#13025#13365#0" />
+            <element signature="e#13154#13284#0" />
+            <element signature="e#13429#14491#0" />
+            <element signature="e#14513#14531#0" />
+            <element signature="e#14554#14641#0" />
+            <element signature="e#14666#14748#0" />
+            <element signature="e#14773#15431#0" />
+            <element signature="e#14982#15167#0" />
+            <element signature="e#15045#15167#0" />
+            <element signature="e#15187#15431#0" />
+            <element signature="e#15249#15431#0" />
+            <element signature="e#15457#16194#0" />
+            <element signature="e#15776#16194#0" />
+            <element signature="e#15821#16175#0" />
+            <element signature="e#16234#16399#0" />
+            <element signature="e#16425#17263#0" />
+            <element signature="e#16621#17263#0" />
+            <element signature="e#17289#17322#0" />
+            <element signature="e#17343#18164#0" />
+            <element signature="e#17546#17652#0" />
+            <element signature="e#18073#18135#0" />
+            <element signature="e#18104#18135#0" />
+            <element signature="e#18191#18224#0" />
+            <element signature="e#18249#18605#0" />
+            <element signature="e#18629#20736#0" />
+            <element signature="e#19150#19232#0" />
+            <element signature="e#19354#20684#0" />
+            <element signature="e#19440#19805#0" />
+            <element signature="e#19844#20068#0" />
+            <element signature="e#20110#20271#0" />
+            <element signature="e#20298#20684#0" />
+            <element signature="e#20298#20317#0" />
+            <element signature="e#20518#20559#0" />
+            <element signature="e#20703#20736#0" />
+            <element signature="e#20764#20914#0" />
+            <element signature="e#20866#20898#0" />
+            <element signature="e#20935#20939#0" />
+            <element signature="e#20968#21098#0" />
+            <element signature="e#21128#21205#0" />
+            <element signature="e#21233#21401#0" />
+            <element signature="e#21503#21696#0" />
+            <element signature="e#22757#22883#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://E:/Softwares/Python 3.7.3 Core/Lib/site-packages/functions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
+        <state relative-caret-position="44">
           <caret line="2" column="29" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AlphaIT.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="12" column="41" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Generator.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="966">
-          <caret line="46" column="26" selection-start-line="46" selection-start-column="26" selection-end-line="46" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#41#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HelixJump/helixJump.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2961">
-          <caret line="141" column="26" lean-forward="true" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
+        <state relative-caret-position="2970">
+          <caret line="141" column="26" selection-start-line="141" selection-start-column="26" selection-end-line="141" selection-end-column="26" />
           <folding>
             <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/HelixJump/helixjump2.py">
+    <entry file="file://$PROJECT_DIR$/MatrixRotation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="433">
-          <caret line="819" column="12" selection-start-line="819" selection-start-column="12" selection-end-line="819" selection-end-column="24" />
+        <state relative-caret-position="1914">
+          <caret line="91" selection-start-line="91" selection-end-line="91" />
+          <folding>
+            <element signature="e#16#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mpu/mpu6050.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1034">
+          <caret line="47" column="18" selection-start-line="47" selection-start-column="18" selection-end-line="47" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#13#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/HelixJump/game/helixjump2.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="1008" column="96" lean-forward="true" selection-start-line="1008" selection-start-column="96" selection-end-line="1008" selection-end-column="96" />
         </state>
       </provider>
     </entry>

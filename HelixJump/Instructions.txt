@@ -1,0 +1,71 @@
+ArcadeJump [BETA] (Windows)
+
+1) Setup:
+	> You just had to unzip the folder which you already did!
+	> Don't move or delete the two folders: "resources" and "savedata", the game would not run otherwise.
+	> Run the game file (ArcadeJump[BETA].exe) and grant permission (if prompted) to play the game. The file is 100% safe and contains no malware.
+
+2) Controls:
+	> Move your mouse to control the game.
+	> That's all. Really.
+
+3) In Game:
+	>The first screen you see is the difficulty selection screen.
+	>The game has 3 difficulty levels (read further to know the differences between them):
+		>Easy 
+		>Medium 
+		>Veteran
+	>The highscore for each difficulty level is recorded separately. (This means you have different highscores in different difficulty modes.)
+    >What you have to do is avoid the orange parts (obstacles) while taking the powerups (explained below).
+
+4) Scoring:
+	>Pass a disc and you get 100 points.
+	>Pass 2 discs without bouncing in between and you get 200 points.
+	>And so on....
+
+5) Difficulty modes:
+	>Easy:
+		>Recommended when you are playing for the first few times.
+		>Has longer durations for powerups (read below: Powerups)
+	>Medium: 
+		>Recommended when you have got the hang of it.
+		>Has shorter powerup durations.
+		>The ball bounces a little faster than in easy mode.
+		>The level length is longer.
+	>Veteran:
+		>Not recommended (jk, it's not that difficult)
+		>No powerups at all
+		>The ball bounces fast, you'll need to lower you reaction times!
+		>The level length is the longest.
+
+6) Powerups:
+	>The game has 2 powerups (more may come in future updates):
+		>Slow Motion (Blue bar in the game):
+			>The ball's falling speed slows down but your horizontal speed doesnt. Get those extra points by passing discs without bouncing!
+			>Lasts for different durations in different modes.
+			>Has drop chances: 10% per disc in Easy and 7% in Medium
+
+		>Invincible (Green Bar in the game):
+			>Zoom past the discs without colliding.
+			>Has drop chances : 9% per disc in Easy and 7% in Medium
+			>Durations different in different modes.
+
+7) Other important things you must know:
+	>The ball spins when you move it around, and this rolling leads it to slip when bouncing.
+	In other words, the ball is affected by its own spin when bouncing, just like when you spin a tennis ball and let it bounce on the floor.
+
+	>This effect is magnified in the Medium mode and even more in the Veteran mode. So be careful, situations become unpredictable!
+
+Coming Soon:
+    >Online game save feature.
+
+> If the game lags a lot, forgive me for poorly optimizing it, I am working to optimize it and will inform you once it gets better.
+
+Further information: The game is made purely in Python with the help of the PyGame library. No Game Engine was used.
+
+Contact Me:
+    >Email: sam.singla07@gmail.com
+    >IG Handle: sams_2604
+
+For having a look at the source code, ping me at any of the above contact methods.
+Have Fun :)

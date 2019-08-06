@@ -15,10 +15,10 @@ blue = (0, 0, 255)
 bgColor = (0, 160, 250)
 orange = (228, 106, 107)
 orange2 = (200, 90, 140)
-invincibleColor = (0,206,209)
-slowmotionColor = (0,0,0,0)
+invincibleColor = (60,206,209)
+slowmotionColor = (238,169,144)
 
-#vars
+#variables
 pygame.init()
 GAME_TITLE = "ArcadeJump"
 VERSION = "[BETA]"
@@ -28,11 +28,11 @@ won = False
 FPS = 75
 
 won_message = ["Level Succesfully Completed", "You Won!", "Well Done Soldier"]
-lost_message = ["Oops! Try Again!", "Not That Easy!", "There is always a next time"]
+lost_message = ["Oops! Try Again!", "There is always a next time"]
 
-NORMAL_PERIOD = FPS - 10
+NORMAL_PERIOD = FPS - 20
 UPDATE_PERIOD = NORMAL_PERIOD #increasing this would induce slow motion
-SLOWMOTION_PERIOD = FPS + 30
+SLOWMOTION_PERIOD = FPS + 20
 
 display_info = pygame.display.Info()
 monitor_res = (display_info.current_w, display_info.current_h)
@@ -46,8 +46,10 @@ res = (w, h)
 clock = pygame.time.Clock()
 
 rotationSpeed = -50  #negative = clockwise
+
 friction = 2
 drag = 1.5
+
 currentAngle = 0
 
 obs = '@'
@@ -71,7 +73,7 @@ max_vel = math.sqrt(2 * (gap - 20) * acc) - 50
 
 move_view_speed = int(max_vel / 3)
 
-level_len = 20 #number of discs total (including blanks)
+level_len = 25 #number of discs total (including blanks)
 
 pre = ball_size[0] // block_size[0] * 3
 hole_sizes = [pre+10, pre+14, pre+15, pre+16]
@@ -86,7 +88,7 @@ disc_positions = []
 
 
 #init stuff
-disp = pygame.display.set_mode((w, h), flags=pygame.HWSURFACE|pygame.FULLSCREEN, depth=16)
+disp = pygame.display.set_mode((w, h), flags=pygame.FULLSCREEN, depth=16)
 
 pygame.display.set_caption(GAME_TITLE+VERSION)
 
@@ -103,26 +105,33 @@ icons = []
 viewMoved = 0
 
 multiplier = 1
+max_multiplier = 5
 bounces = 1 #bounces since crossing last disc
 
-filename ="savedata/{}_game_save.ARCADEJUMP".format(GAME_TITLE)
+score= 0
+scorePerBounce = 100
 
-scorePerBounce = 20
-score = 0
-highscore = 0
+filename ="savedata/game_save_data.ARCADEJUMP"
+
+
+#highscore
+highscores = []
 highscore_mode = "EASY"
 
+file_invalid_or_not_created = False
 try:
     scorefile = open(filename, "r")
     try:
-        string = scorefile.read().split("\n")
-        highscore=int(string[0])
-        highscore_mode = string[1]
+        string=scorefile.read().split("\n")
+        for sc in string:
+            highscores.append(int(sc))
     except:
+        file_invalid_or_not_created=True
         print("Warning: Something wrong with the scorefile.")
-        highscore=0
+        highscores = [0,0,0]
 except:
-    highscore = 0
+    file_invalid_or_not_created=True
+    highscores = [0,0,0]
 
 score_string = str(score)
 disp_added = None
@@ -299,7 +308,7 @@ def setDifficulty(n):
             mode = 2
             mode_name = "VETERAN"
             NORMAL_PERIOD -= 25
-            SLOWMOTION_PERIOD -= 30
+            SLOWMOTION_PERIOD -= 40
             rarities.slowmotion, rarities.invincible = 0, 0
             durations.slowmotion -= 3
             durations.invincible -= 3
@@ -316,15 +325,15 @@ def genscorestring():
     global score
     global score_string
     global added
-    global highscore
+    global highscores
     global highscore_mode
     global mode_name
-
+    global mode
     score_string = "Score: {}  ".format(score)
     if added != None:
         score_string += " +{}".format(added)
 
-    score_string += "   AllTime: {} [{}]   Current Mode: {}".format(highscore,highscore_mode, mode_name)
+    score_string += "   AllTime: {}   Current Mode: {}".format(highscores[mode], mode_name)
 
 
 def waviness():
@@ -339,7 +348,7 @@ def waviness():
 
 
 def setFPS():
-    """Function to set FPS according to resolution"""
+    """Function to set FPS according to resolution. Currently not being used, and is trash."""
     global FPS
     global w, h
     global NORMAL_PERIOD
@@ -381,25 +390,25 @@ def loadImages():
     global disp
     global trail_thickness
 
-    blockImage = pygame.image.load("resources/block.png")
+    blockImage = pygame.image.load("resources/block.png").convert_alpha()
     blockImage = pygame.transform.scale(blockImage, block_size)
     images.block = blockImage
 
-    ballImage = pygame.image.load("resources/ball.png")
+    ballImage = pygame.image.load("resources/ball.png").convert_alpha()
     ballImage = pygame.transform.scale(ballImage,ball_size)
     images.ball = ballImage
     origImages.ball = ballImage
 
-    obsImage=pygame.image.load("resources/obs.png")
+    obsImage=pygame.image.load("resources/obs.png").convert_alpha()
     obsImage=pygame.transform.scale(obsImage,block_size)
     images.obs=obsImage
 
     #They use the same variable to load because your boi samarth is lazy.
-    blockImage=pygame.image.load("resources/invincible.png")
+    blockImage=pygame.image.load("resources/invincible.png").convert_alpha()
     blockImage=pygame.transform.scale(blockImage,block_size)
     images.invincible=blockImage
 
-    blockImage=pygame.image.load("resources/slowmotion.png")
+    blockImage=pygame.image.load("resources/slowmotion.png").convert_alpha()
     blockImage=pygame.transform.scale(blockImage,block_size)
     images.slowmotion=blockImage
 
@@ -443,9 +452,18 @@ def removeAdded(delay):
             disp_added = None
         sleep(1)
 
-
 addedRemoverThread = Thread(target=removeAdded, args=(2,))
 addedRemoverThread.start()
+
+def stringify(array):
+    string = ""
+    for i in range(len(array) - 1):
+        string += str(array[i]) + "\n"
+
+    string += str(array[-1])
+
+    return string
+
 
 def saveGame():
     global score
@@ -453,13 +471,17 @@ def saveGame():
     global GAME_TITLE
     global filename
     global mode_name
+    global mode
     global highscore_mode
+    global file_invalid_or_not_created
+    global highscores
+
+    highscores[mode] = score if score > highscores[mode] else highscores[mode]
 
     file = open(filename,"w")
-    if score > highscore:
-        file.write(str(score) + "\n{}".format(mode_name))
-    else:
-        file.write(str(highscore) + "\n{}".format(highscore_mode))
+
+    file.write(stringify(highscores))
+
     file.close()
 
 
@@ -508,7 +530,6 @@ def addPowerups():
         for disc in discs:
             if randint(0, 100) in powerup.range:
                 psize = choice(powerup_sizes)
-
 
                 start = randint(0,size - psize - 1)
                 end = start + psize
@@ -698,16 +719,22 @@ def renderTrail():
     global disp
     global trail_color
     global view
-
+    global ball_size
 
     delta = 0
-
+    offset_ = 10
     for i in range(trail_len - 1):
         start, end = (trail_l[i][0], trail_l[i][1] + view),(trail_l[i + 1][0] + delta * (i - trail_len/2), trail_l[i + 1][1] + view)
         pg.draw.aaline(disp,trail_color, start, end)
 
         start, end = (trail_r[i][0], trail_r[i][1] + view),(trail_r[i + 1][0] + delta * (i - trail_len/2), trail_r[i + 1][1] + view)
         pg.draw.aaline(disp,trail_color,start,end)
+
+        start, end = (trail_r[i][0] - (ball_size[0]/2),trail_r[i][1] + view + offset_ - (ball_size[0]/2)),(trail_r[i + 1][0] + delta * (i - trail_len / 2) - (ball_size[0]/2),trail_r[i + 1][1] + offset_+ view - (ball_size[0]/2))
+        pg.draw.aaline(disp,trail_color,start,end)
+
+def isSlowmotion():
+    return Powerups.slowmotion.active
 
 
 def render():
@@ -727,6 +754,8 @@ def render():
 
     if isInvincible():
         disp.fill(invincibleColor)
+    elif isSlowmotion():
+        disp.fill(slowmotionColor)
     else:
         disp.fill(bgColor)  #Clear screen
 
@@ -754,8 +783,9 @@ def isInvincible():
 
 def addToScore():
     global bounces, added, scorePerBounce, multiplier, disp_added, score
+    global max_multiplier
     """Add to the score, if the player is invincible or also when he is crossing a disc"""
-    if not bounces:
+    if not bounces and multiplier < max_multiplier:
         multiplier+=1
 
     bounces=0
@@ -846,8 +876,10 @@ def collision():
 
             rotationSpeed /= friction
 
-            bounces += 1
-            multiplier = 1
+
+            if not isInvincible():
+                bounces+=1
+                multiplier = 1
             added = None
 
             if isInvincible():
@@ -896,7 +928,10 @@ def renderText(txt):
     disp.blit(image,rect)
     pygame.display.update()
 
+
 try:
+    system("cls")
+
     pre_init()
 
     selectDifficultyScreen()
@@ -906,12 +941,14 @@ except:
     pygame.quit()
     print("""Something went wrong. Make sure that this app is running from its home directory. (As received), i.e. Don't move this application to another location.""")
     input()
+
 ball = Ball()
 
 system("cls")
 print("This info is meant for debugging, as the game is still in BETA. Please ignore this info.\n")
-while running and not won:
-    if pygame.mouse.get_focused() or not pygame.mouse.get_focused():
+
+try:
+    while running and not won:
         updateBall()
         render()
 
@@ -926,7 +963,7 @@ while running and not won:
 
                 ball.x -= relx // 12
                 if relx != 0:
-                    wei = int(weight(relx) * 1.4)
+                    wei = int(weight(relx) * 1.8)
                     relx += abs(relx)
 
                     for i in range(wei + 2):
@@ -937,13 +974,16 @@ while running and not won:
 
         pygame.display.update()
         clock.tick(FPS)
-if won:
-    renderText(choice(won_message))
-    saveGame()
-else:
-    renderText(choice(lost_message))
+    if won:
+        renderText(choice(won_message))
+        saveGame()
+    else:
+        renderText(choice(lost_message))
 
-sleep(3)
-pygame.quit()
+    sleep(3)
+    pygame.quit()
 
-exit()
+    sys.exit()
+except:
+    #print("Something bad happened. If the problem persists, please try re-downloading the game and trying again.")
+    sys.exit()
